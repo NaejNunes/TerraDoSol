@@ -8,13 +8,18 @@ public class PlayerController : MonoBehaviour
     //Variavel que da a velocidade em que o player ira andar.
     private float velocidade;
 
+    
+    [SerializeField]
+    //Variavel para atribuir as vidas do player
+    private int vida;
+
     public GameObject TabelaDoHeroi;
 
     // Start is called before the first frame update.
     void Start()
     {
-        //Inicia a variavel para falar que está desligado.
-
+        //Inicia a vida do player
+        vida = 3;
     }
 
     // Update is called once per frame.
@@ -61,4 +66,5 @@ public class PlayerController : MonoBehaviour
             TabelaDoHeroi.SetActive(true);
         }
     }
+
 }
