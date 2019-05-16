@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     //Variavel para atribuir as vidas do player
-    private int vida;
+    public static int vida;
 
     public GameObject TabelaDoHeroi;
 
@@ -67,4 +67,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Detecta a colisao com algo solido em cena
+    public void OnCollisionEnter2D(Collision2D colidir)
+    {
+
+        //Condição para checar se o player colidiu com o inimigo e tirar 1 de vida.
+        if (colidir.gameObject.CompareTag("Inimigo"))
+        {
+            vida = vida - 1;
+        }
+    }
 }
