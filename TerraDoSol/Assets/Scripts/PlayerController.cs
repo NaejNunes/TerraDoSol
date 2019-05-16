@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     //Variavel que da a velocidade em que o player ira andar.
-    private float velocidade;
+    public float velocidade;
 
     
     [SerializeField]
@@ -18,14 +18,14 @@ public class PlayerController : MonoBehaviour
     public GameObject TabelaDoHeroi;
 
     //Variavel que liga o texto da vida na tabela do heroi.
-    public Text txtVida;
+    public Text txtVida, txtFome;
 
     // Start is called before the first frame update.
     void Start()
     {
-        //Inicia a vida do player
         vida = 3;
         maxVida = 3;
+        fome = 10;
     }
 
     // Update is called once per frame.
@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
         MovimentaçãoPlayer();
 
         txtVida.text = "" + vida + "/" + maxVida;
+
+        txtFome.text = "" + fome + "/" + "10";
     }
 
     //Movimentação do player.
