@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,15 +12,20 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     //Variavel para atribuir as vidas do player
-    public static int vida;
+    public static int vida, maxVida, fome;
 
+    //Variavel para lincar a tabela de atributos do player
     public GameObject TabelaDoHeroi;
+
+    //Variavel que liga o texto da vida na tabela do heroi.
+    public Text txtVida;
 
     // Start is called before the first frame update.
     void Start()
     {
         //Inicia a vida do player
         vida = 3;
+        maxVida = 3;
     }
 
     // Update is called once per frame.
@@ -27,6 +33,8 @@ public class PlayerController : MonoBehaviour
     {
         //Chama a funcao para movimentar o player.
         MovimentaçãoPlayer();
+
+        txtVida.text = "" + vida + "/" + maxVida;
     }
 
     //Movimentação do player.
