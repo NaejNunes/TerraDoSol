@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class InimigoController : MonoBehaviour
 {
-    private int vida, maxVida, velocidade, numero, milesimos, segundos;
+    private int vida, maxVida, velocidade, direcao, milesimos, segundos, qtsSpown, segundosDeSpown, qtdMaximaInimigos, qtdAtualInimigos;
 
     public GameObject[] vidaObjeto;
+
+    public GameObject InimgiosObjeto;
+    
+    private static float x, y;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,16 +22,24 @@ public class InimigoController : MonoBehaviour
 
         //Inicia as variaveis do tempo.
         milesimos = 60;
-        segundos = 10;
+        segundos = 1;
 
         //Inicia o player andando.
-        numero = Random.Range(0, 4);
+        direcao = Random.Range(0, 6);
+
+        //Inicia a variavel de quantidade de inimigos.
+        qtdAtualInimigos = 1;
+
+        qtdMaximaInimigos = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(segundos + "/" + milesimos);
+        //Recebe a posição 
+        x = transform.position.x;
+        y = transform.position.y;
+
         //Chama a função do tempo.
         Tempo();
 
@@ -67,13 +80,33 @@ public class InimigoController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        //Recebe um tempo aleatorio
+        if (milesimos == 0)
+        {
+            segundosDeSpown = Random.Range(1, 5);
+        }
         //Condição para gerar um número aleatorio para se movimentar.
         if (segundos == 0)
         {
-            numero = Random.Range(0, 4);
-            segundos = 10;
-            Debug.Log(numero);
-        }       
+            direcao = Random.Range(0, 4);
+            segundos = 3;         
+        }
+
+        //Condicao para instanciar o inimigo 
+        if (segundosDeSpown == 0)
+        {
+            if (qtdAtualInimigos < qtdMaximaInimigos)
+            {
+                Instantiate(this.InimgiosObjeto, new Vector2(InimigoController.x + 3f, InimigoController.y + 2.5f), Quaternion.identity);
+                qtdAtualInimigos = qtdAtualInimigos + 1;
+            }            
+        }
+
+        //Nao deixa spownar inimigos mais que a quantidade maxima permitida.
+        if (qtdAtualInimigos >= qtdMaximaInimigos)
+        {
+            qtdAtualInimigos = qtdMaximaInimigos;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D colisor)
@@ -87,10 +120,31 @@ public class InimigoController : MonoBehaviour
 
     //Função para se movimentar.x
     public void MovimentacaoInimigo()
-    {                  
-                  
-        switch (numero)
+    {
+        if (y >= 4)
         {
+            transform.Translate(Vector2.down * velocidade * Time.deltaTime);
+        }
+        else if (y <= -1.9f)
+        {
+            transform.Translate(Vector2.up * velocidade * Time.deltaTime);
+        }
+        else if (x <= -6)
+        {
+            transform.Translate(Vector2.right * velocidade * Time.deltaTime);
+        }
+        else if (x >= 6)
+        {
+            transform.Translate(Vector2.left * velocidade * Time.deltaTime);
+        }
+
+        Debug.Log(direcao);
+        switch (direcao)
+        {
+            case 0:
+                transform.Translate(Vector2.down * velocidade * Time.deltaTime);
+                break;
+
             case 1:
                 transform.Translate(Vector2.right * velocidade * Time.deltaTime);                          
                 break;
@@ -104,8 +158,32 @@ public class InimigoController : MonoBehaviour
                 break;
 
             case 4:
-                transform.Translate(Vector2.down * velocidade * Time.deltaTime);            
-                break;               
+               //Para
+                break;
+        }
+    }
+
+    public void SpawrInimigos()
+    {
+        qtsSpown = Random.Range(0, 4);
+
+        switch (qtsSpown)
+        {
+            case 0:
+                segundosDeSpown = 10;
+                break;
+
+            case 1:
+                segundosDeSpown = 30;
+                break;
+
+            case 2:
+                segundosDeSpown = 40;
+                break;
+
+            case 3:
+                segundosDeSpown = 60;
+                break;
         }
     }
 
