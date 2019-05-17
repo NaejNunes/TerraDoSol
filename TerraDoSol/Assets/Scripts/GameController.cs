@@ -6,16 +6,18 @@ public class GameController : MonoBehaviour
 {
 
     //Variaveis para contar o tempo
-    public static int milesimos, segundos, tempoFome, tempoMana;
+    public static int milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede;
 
     // Start is called before the first frame update
     void Start()
     {
         //Iniciando as variaveis para conta de tempo.
         milesimos = 60;
-        segundos = 60;
-        tempoFome = 5;
-        tempoMana = 10;
+        segundos = 60;       
+        tempoVida = 60;
+        tempoMana = 20;
+        tempoFome = 6;
+        tempoSede = 3;
     }
 
     // Update is called once per frame
@@ -33,9 +35,11 @@ public class GameController : MonoBehaviour
         {
             segundos = segundos - 1;
 
+            //Controla o tempo da regeneracao da vida
+            tempoVida = tempoVida - 1;
+
             //Controla o tempo da regeneracao da mana
             tempoMana = tempoMana - 1;
-            Debug.Log(tempoMana);
 
             milesimos = 60;
         }
@@ -43,10 +47,11 @@ public class GameController : MonoBehaviour
         {
             //Controla o tempo de fome
             tempoFome = tempoFome - 1;
-            segundos = 60;          
-        }
 
-       
-       
+            //Controla o tempo de sede
+            tempoSede = tempoSede - 1;
+
+            segundos = 60;          
+        }           
     }
 }

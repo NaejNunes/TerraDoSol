@@ -18,38 +18,67 @@ public class StatusPlayerController : MonoBehaviour
         //Chama o Método para contar o tempo.
         GameController.Tempo();
 
-        //Condição para diminuir a fome
-        if (GameController.tempoFome <= 1 && GameController.segundos <= 1)
+        //Condição para Aumentar a vida.
+        if (GameController.tempoVida == 0)
         {
-            PlayerController.fome = PlayerController.fome - 1;
-            GameController.tempoFome = 5;
+            PlayerController.vida = PlayerController.vida + 1;
+            GameController.tempoVida = 60;
         }
 
-        //Condição para Aumentar a mana
+        //Condição para Aumentar a mana.
         if (GameController.tempoMana == 0)
         {
             PlayerController.mana = PlayerController.mana + 1;
-            GameController.tempoMana = 10;
+            GameController.tempoMana = 20;
         }
 
+        //Condição para diminuir a fome.
+        if (GameController.tempoFome <= 1 && GameController.segundos <= 1)
+        {
+            PlayerController.fome = PlayerController.fome - 1;
+            GameController.tempoFome = 6;
+        }
+
+        //Condição para diminuir a sede.
+        if (GameController.tempoSede <= 1 && GameController.segundos <= 1)
+        {
+            PlayerController.sede = PlayerController.sede - 1;
+            GameController.tempoSede = 3;
+        }
+
+       
         //Condição para desatuivar a vida ilustrativa da tela.
         if (PlayerController.vida == 2)
         {
             vida[0].SetActive(false);          
         }
+        else if (PlayerController.vida < 3)
+        {
+            vida[0].SetActive(true);
+        }
+        //_____________________________________________________________________________
 
         if (PlayerController.vida == 1)
         {
             vida[1].SetActive(false);
         }
+        else if (PlayerController.vida < 2)
+        {
+            vida[1].SetActive(true);
+        }
+        //_____________________________________________________________________________
 
         if (PlayerController.vida == 0)
         {
             vida[2].SetActive(false);
         }
+        else if (PlayerController.vida < 1)
+        {
+            vida[2].SetActive(true);
+        }
 
         //Condicao para desativar e ativar a mana ilustrativa na tela.
-        if (PlayerController.mana < 4)
+        if (PlayerController.mana <= 4)
         {
             mana[0].SetActive(false);
         }

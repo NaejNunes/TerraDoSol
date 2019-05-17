@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     //Variavel para atribuir as vidas do player
-    public static int vida, maxVida, maxMana,  fome, mana;
+    public static int vida, maxVida, maxMana,  mana, fome, sede;
 
     //Variavel usada para receber as posicoes.
     public static float x, y;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject TabelaDoHeroi, ataqueMagico;
 
     //Variavel que liga o texto da vida na tabela do heroi.
-    public Text txtVida,txtMana, txtFome;
+    public Text txtVida, txtMana, txtFome, txtSede;
 
     // Start is called before the first frame update.
     void Start()
@@ -32,19 +32,32 @@ public class PlayerController : MonoBehaviour
         mana = 5;
         maxMana = 5;
         fome = 10;
+        sede = 10;
     }
             
     // Update is called once per frame.
     void Update()
-    {     
+    {      
         //Chama a funcao para movimentar o player.
         MovimentaçãoPlayer();
 
         //Condicao que verifica se tem mana suficiente;
         if(mana > 1)
         {
-            //Chama a funcao que instancia a flecha.
+            //Chama a funcao que instancia a Habilidade.
             FechaDeGelo();
+        }
+
+        //Condicao para nao aumentar a "vida" mais que o maximo.
+        if (vida >= maxVida)
+        {
+            vida = maxVida;
+        }
+        //Condicao para nao aumentar a "mana" mais que o maximo.
+
+        if (mana >= maxMana)
+        {
+            mana = maxMana;
         }
 
         //recebe o arquivo txt e da as seguintes informacoes a ela...
@@ -53,6 +66,8 @@ public class PlayerController : MonoBehaviour
         txtMana.text = "" + mana + "/" + maxMana;
 
         txtFome.text = "" + fome + "/" + "10";
+
+        txtSede.text = "" + sede + "/" + "10";
 
         //Chama a tela do herois em jogo
         CarregarTabelaDoHeroi();
