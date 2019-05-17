@@ -15,4 +15,12 @@ public class FlechaDeGelo : MonoBehaviour
     {
         transform.Translate(0, 0.05f , 0);
     }
+    
+    public void OnTriggerEnter2D(Collider2D Colisao)
+    {
+        if (Colisao.gameObject.CompareTag("Inimigo"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
