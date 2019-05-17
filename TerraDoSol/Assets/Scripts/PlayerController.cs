@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
 
     
     [SerializeField]
-    //Variavel para atribuir as vidas do player
-    public static int vida, maxVida, maxMana,  mana, fome, sede;
-
+    //Vairiaveis para definir os atributos basicos do player.
+    public static int vida, maxVida, maxMana,  mana, fome, sede, forca, inteligencia, agilidade, constituicao, experiencia, maxExperiencia, nivel;
+  
     //Variavel usada para receber as posicoes.
     public static float x, y;
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject TabelaDoHeroi, ataqueMagico;
 
     //Variavel que liga o texto da vida na tabela do heroi.
-    public Text txtVida, txtMana, txtFome, txtSede;
+    public Text txtVida, txtMana, txtFome, txtSede, txtForca, txtInteligencia, txtAgilidade, txtConstituicao, txtExperiencia, txtNivel;
 
     // Start is called before the first frame update.
     void Start()
@@ -33,6 +33,17 @@ public class PlayerController : MonoBehaviour
         maxMana = 5;
         fome = 10;
         sede = 10;
+
+        //Atributos inicial do Player
+        forca = 1;
+        inteligencia = 1;
+        agilidade = 1;
+        constituicao = 1;
+
+        //Da valor ao experiencia.
+        maxExperiencia = 100;
+        experiencia = 0;
+        nivel = 1;
     }
             
     // Update is called once per frame.
@@ -60,6 +71,11 @@ public class PlayerController : MonoBehaviour
             mana = maxMana;
         }
 
+        if (experiencia >= maxExperiencia)
+        {
+
+        }
+
         //recebe o arquivo txt e da as seguintes informacoes a ela...
         txtVida.text = "" + vida + "/" + maxVida;
 
@@ -68,6 +84,20 @@ public class PlayerController : MonoBehaviour
         txtFome.text = "" + fome + "/" + "10";
 
         txtSede.text = "" + sede + "/" + "10";
+
+        //Ligando os arquivos txt dos atributos;
+        txtForca.text = "" + forca;
+
+        txtInteligencia.text = "" + inteligencia;
+
+        txtAgilidade.text = "" + agilidade;
+
+        txtConstituicao.text = "" + constituicao;
+
+        //Nivel e Experiencia sendo ligados ao texto.
+        txtExperiencia.text = "" + experiencia + "/" + maxExperiencia;
+
+        txtNivel.text = "" + nivel;
 
         //Chama a tela do herois em jogo
         CarregarTabelaDoHeroi();
