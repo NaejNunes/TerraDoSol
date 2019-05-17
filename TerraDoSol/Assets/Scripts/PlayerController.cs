@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     //Vairiaveis para definir os atributos basicos do player.
-    public static int vida, maxVida, maxMana,  mana, fome, sede, forca, inteligencia, agilidade, constituicao, experiencia, maxExperiencia, nivel;
+    public static int vida, maxVida, maxMana,  mana, fome, sede, milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede,
+    forca, inteligencia, agilidade, constituicao, experiencia, maxExperiencia, nivel;
   
     //Variavel usada para receber as posicoes.
     public static float x, y;
@@ -34,6 +35,12 @@ public class PlayerController : MonoBehaviour
         fome = 10;
         sede = 10;
 
+        //Tempo
+        tempoVida = 60;
+        tempoMana = 1;
+        tempoFome = 6;
+        tempoSede = 3;
+
         //Atributos inicial do Player
         forca = 1;
         inteligencia = 1;
@@ -48,7 +55,12 @@ public class PlayerController : MonoBehaviour
             
     // Update is called once per frame.
     void Update()
-    {      
+    {
+
+        Debug.Log("Tempo da Mada:" +tempoMana+ " Segundos:" + segundos+ " milesimos:" +milesimos+ "Tempo Spown:" +GameController.segundosDeSpown );
+        //Chama a função Tempo
+        Tempo();
+
         //Chama a funcao para movimentar o player.
         MovimentaçãoPlayer();
 
@@ -64,11 +76,22 @@ public class PlayerController : MonoBehaviour
         {
             vida = maxVida;
         }
-        //Condicao para nao aumentar a "mana" mais que o maximo.
 
+        if (tempoVida == 0)
+        {
+            vida = vida + 1;
+        }
+
+        //Condicao para nao aumentar a "mana" mais que o maximo.
         if (mana >= maxMana)
         {
             mana = maxMana;
+        }
+
+        if (tempoMana == 0)
+        {
+            mana = mana + 1;
+            tempoMana = 1;
         }
 
         if (experiencia >= maxExperiencia)
@@ -162,6 +185,34 @@ public class PlayerController : MonoBehaviour
         {
             mana = mana - 2;
             Instantiate(this.ataqueMagico, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+        }
+    }
+
+    public static void Tempo()
+    {
+        milesimos = milesimos - 1;
+
+        if (milesimos <= 0)
+        {
+            segundos = segundos - 1;
+
+            //Controla o tempo da regeneracao da vida
+            tempoVida = tempoVida - 1;
+
+            //Controla o tempo da regeneracao da mana
+            tempoMana = tempoMana - 1;
+
+            milesimos = 60;
+        }
+        if (segundos <= 0)
+        {
+            //Controla o tempo de fome
+            tempoFome = tempoFome - 1;
+
+            //Controla o tempo de sede
+            tempoSede = tempoSede - 1;
+
+            segundos = 60;
         }
     }
 }

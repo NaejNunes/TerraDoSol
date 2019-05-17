@@ -210,7 +210,7 @@ MonoBehaviour:
   - {fileID: 7689776569564146959}
   - {fileID: 7689776569792556317}
   - {fileID: 7689776569815702966}
-  InimgiosObjeto: {fileID: 0}
+  InimgiosObjeto: {fileID: 7689776569367686275}
 --- !u!1 &7689776569564146959
 GameObject:
   m_ObjectHideFlags: 0

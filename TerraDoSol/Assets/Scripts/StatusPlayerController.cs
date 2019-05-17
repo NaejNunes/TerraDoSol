@@ -19,31 +19,31 @@ public class StatusPlayerController : MonoBehaviour
         GameController.Tempo();
 
         //Condição para Aumentar a vida.
-        if (GameController.tempoVida == 0)
+        if (PlayerController.tempoVida == 0)
         {
             PlayerController.vida = PlayerController.vida + 1;
-            GameController.tempoVida = 60;
+            PlayerController.tempoVida = 60;
         }
 
         //Condição para Aumentar a mana.
-        if (GameController.tempoMana == 0)
+        if (PlayerController.tempoMana == 0)
         {
             PlayerController.mana = PlayerController.mana + 1;
-            GameController.tempoMana = 20;
+            PlayerController.tempoMana = 20;
         }
 
         //Condição para diminuir a fome.
-        if (GameController.tempoFome <= 1 && GameController.segundos <= 1)
+        if (PlayerController.tempoFome <= 1 && GameController.segundos <= 1)
         {
             PlayerController.fome = PlayerController.fome - 1;
-            GameController.tempoFome = 6;
+            PlayerController.tempoFome = 6;
         }
 
         //Condição para diminuir a sede.
-        if (GameController.tempoSede <= 1 && GameController.segundos <= 1)
+        if (PlayerController.tempoSede <= 1 && GameController.segundos <= 1)
         {
             PlayerController.sede = PlayerController.sede - 1;
-            GameController.tempoSede = 3;
+            PlayerController.tempoSede = 3;
         }
 
        
