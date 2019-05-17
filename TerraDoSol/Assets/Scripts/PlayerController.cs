@@ -12,31 +12,55 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     //Variavel para atribuir as vidas do player
-    public static int vida, maxVida, fome;
+    public static int vida, maxVida, maxMana,  fome, mana;
 
-    //Variavel para lincar a tabela de atributos do player
-    public GameObject TabelaDoHeroi;
+    //Variavel usada para receber as posicoes.
+    public static float x, y;
+
+    //Variavel para lincar a tabela de atributos do player.
+    public GameObject TabelaDoHeroi, ataqueMagico;
 
     //Variavel que liga o texto da vida na tabela do heroi.
-    public Text txtVida, txtFome;
+    public Text txtVida,txtMana, txtFome;
 
     // Start is called before the first frame update.
     void Start()
     {
+        //Inicializa as variaveis quando comeca o jogo.
         vida = 3;
         maxVida = 3;
+        mana = 5;
+        maxMana = 5;
         fome = 10;
     }
-
+            
     // Update is called once per frame.
     void Update()
-    {
+    {     
         //Chama a funcao para movimentar o player.
         MovimentaçãoPlayer();
 
+        //Condicao que verifica se tem mana suficiente;
+        if(mana > 1)
+        {
+            //Chama a funcao que instancia a flecha.
+            FechaDeGelo();
+        }
+
+        //recebe o arquivo txt e da as seguintes informacoes a ela...
         txtVida.text = "" + vida + "/" + maxVida;
 
+        txtMana.text = "" + mana + "/" + maxMana;
+
         txtFome.text = "" + fome + "/" + "10";
+
+        //Chama a tela do herois em jogo
+        CarregarTabelaDoHeroi();
+
+        //Atribuir a posicao nas variaveis.
+        x = transform.position.x;
+        y = transform.position.y;
+
     }
 
     //Movimentação do player.
@@ -62,10 +86,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Vertical") < 0)
         {
             transform.Translate(Vector2.down * velocidade * Time.deltaTime);
-        }
-
-        CarregarTabelaDoHeroi();
+        }      
     }
+
     //Função que carrega a tela do herois com todos os atributos do heroi.
     public void CarregarTabelaDoHeroi()
     {
@@ -85,6 +108,15 @@ public class PlayerController : MonoBehaviour
         if (colidir.gameObject.CompareTag("Inimigo"))
         {
             vida = vida - 1;
+        }
+    }
+    //Instacia uma flecha de gelo.
+    public void FechaDeGelo()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            mana = mana - 2;
+            Instantiate(this.ataqueMagico, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
         }
     }
 }
