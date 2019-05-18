@@ -22,5 +22,9 @@ public class FlechaDeGelo : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (Colisao.gameObject.CompareTag("Cenario"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

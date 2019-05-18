@@ -23,7 +23,7 @@ public class InimigoController : MonoBehaviour
         segundos = 1;
 
         //Inicia o player andando.
-        direcao = Random.Range(0, 6);      
+        direcao = Random.Range(0, 5);      
     }
 
     // Update is called once per frame
@@ -78,7 +78,7 @@ public class InimigoController : MonoBehaviour
         //Condição para gerar um número aleatorio para se movimentar.
         if (segundos == 0)
         {
-            direcao = Random.Range(0, 4);
+            direcao = Random.Range(0, 5);
             segundos = 3;         
         }   
     }

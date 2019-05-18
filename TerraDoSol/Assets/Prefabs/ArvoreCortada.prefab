@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8948114178489696260}
   m_Layer: 0
   m_Name: ArvoreCortada
-  m_TagString: Untagged
+  m_TagString: Cenario
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

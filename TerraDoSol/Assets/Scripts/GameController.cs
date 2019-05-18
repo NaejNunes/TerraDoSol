@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
         //Inicia a variavel de quantidade de inimigos.
         qtdAtualInimigos = 1;
         qtdMaximaInimigos = 5;
+        segundosDeSpown = 10;
     }
 
     // Update is called once per frame
@@ -42,9 +43,14 @@ public class GameController : MonoBehaviour
         if (qtdAtualInimigos < qtdMaximaInimigos && segundosDeSpown <= 0)
         {
             Instantiate(this.InimgiosObjeto, new Vector2(GameController.x + 3f, GameController.y + 2.5f), Quaternion.identity);
-            qtdAtualInimigos = qtdAtualInimigos + 1;           
+            qtdAtualInimigos = qtdAtualInimigos + 1;
+            qtdSpown = Random.Range(0, 4);
         }
 
+        if (segundosDeSpown <= 0)
+        {
+            segundosDeSpown = 60;
+        }
         //Condicao para instanciar o inimigo 
        
         //Nao deixa spownar inimigos mais que a quantidade maxima permitida.
