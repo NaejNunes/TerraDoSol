@@ -2316,6 +2316,7 @@ MonoBehaviour:
   txtMana: {fileID: 427352229}
   txtFome: {fileID: 2108182548}
   txtSede: {fileID: 58690009}
+  txtPontos: {fileID: 1971908299}
   txtForca: {fileID: 1250775993}
   txtInteligencia: {fileID: 310046385}
   txtAgilidade: {fileID: 54958361}
@@ -3997,12 +3998,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &679625703 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7689776569367686275, guid: 64eddb8a0cdaae04cabf01f6444c335d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1348729860}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &682768595
 GameObject:
   m_ObjectHideFlags: 0
@@ -10729,7 +10724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc04b9f882f152b45a1aec5313f91f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InimgiosObjeto: {fileID: 679625703}
+  InimgiosObjeto: {fileID: 7689776569367686275, guid: 64eddb8a0cdaae04cabf01f6444c335d,
+    type: 3}
 --- !u!1 &1872351844
 GameObject:
   m_ObjectHideFlags: 0
@@ -12452,6 +12448,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlacaDeMadeira
+      objectReference: {fileID: 0}
+    - target: {fileID: 2161562563055949735, guid: d0f2d8f52a16d7d4abde060a5f9c1053,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cenario
       objectReference: {fileID: 0}
     - target: {fileID: 5272275119075466387, guid: d0f2d8f52a16d7d4abde060a5f9c1053,
         type: 3}

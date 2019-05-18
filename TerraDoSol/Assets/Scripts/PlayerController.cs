@@ -12,8 +12,11 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     //Vairiaveis para definir os atributos basicos do player.
-    public static int vida, maxVida, maxMana,  mana, fome, sede, milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede,
-    forca, inteligencia, agilidade, constituicao, experiencia, maxExperiencia, nivel;
+    public static int vida, maxVida, mana, maxMana,
+                      fome, sede, 
+                      milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede,
+                      pontos, forca, inteligencia, agilidade, constituicao,
+                      experiencia, maxExperiencia, nivel;
   
     //Variavel usada para receber as posicoes.
     public static float x, y;
@@ -22,7 +25,10 @@ public class PlayerController : MonoBehaviour
     public GameObject TabelaDoHeroi, ataqueMagico;
 
     //Variavel que liga o texto da vida na tabela do heroi.
-    public Text txtVida, txtMana, txtFome, txtSede, txtForca, txtInteligencia, txtAgilidade, txtConstituicao, txtExperiencia, txtNivel;
+    public Text txtVida, txtMana,
+           txtFome, txtSede, 
+           txtPontos, txtForca, txtInteligencia, txtAgilidade, txtConstituicao,
+           txtExperiencia, txtNivel;
 
     // Start is called before the first frame update.
     void Start()
@@ -42,6 +48,7 @@ public class PlayerController : MonoBehaviour
         tempoSede = 3;
 
         //Atributos inicial do Player
+        pontos = 5;
         forca = 1;
         inteligencia = 1;
         agilidade = 1;
@@ -96,7 +103,8 @@ public class PlayerController : MonoBehaviour
 
         if (experiencia >= maxExperiencia)
         {
-
+            nivel = nivel + 1;
+            pontos += 5; 
         }
 
         //recebe o arquivo txt e da as seguintes informacoes a ela...
@@ -122,13 +130,14 @@ public class PlayerController : MonoBehaviour
 
         txtNivel.text = "" + nivel;
 
+        txtPontos.text = "" + pontos;
+
         //Chama a tela do herois em jogo
         CarregarTabelaDoHeroi();
 
         //Atribuir a posicao nas variaveis.
         x = transform.position.x;
         y = transform.position.y;
-
     }
 
     //Movimentação do player.

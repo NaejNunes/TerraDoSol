@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
         //Condição que instancia o inimigo 
         if (qtdAtualInimigos < qtdMaximaInimigos && segundosDeSpown <= 0)
         {
-            Instantiate(this.InimgiosObjeto, new Vector2(GameController.x + 3f, GameController.y + 2.5f), Quaternion.identity);
+            Instantiate(InimgiosObjeto, new Vector2(GameController.x + 3f, GameController.y + 2.5f), Quaternion.identity);
             qtdAtualInimigos = qtdAtualInimigos + 1;
             qtdSpown = Random.Range(0, 4);
         }

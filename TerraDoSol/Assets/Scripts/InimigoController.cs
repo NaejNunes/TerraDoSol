@@ -68,6 +68,7 @@ public class InimigoController : MonoBehaviour
             vidaObjeto[2].SetActive(false);
             GameController.qtdAtualInimigos = GameController.qtdAtualInimigos - 1;
             GameController.SpawnInimigos();
+            PlayerController.experiencia += 10;
 
             Destroy(this.gameObject);
         }
