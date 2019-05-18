@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
         if (qtdAtualInimigos < qtdMaximaInimigos && segundosDeSpown <= 0)
         {
             Instantiate(this.InimgiosObjeto, new Vector2(GameController.x + 3f, GameController.y + 2.5f), Quaternion.identity);
-            qtdAtualInimigos = qtdAtualInimigos + 1;
+            qtdAtualInimigos = qtdAtualInimigos + 1;           
         }
 
         //Condicao para instanciar o inimigo 
