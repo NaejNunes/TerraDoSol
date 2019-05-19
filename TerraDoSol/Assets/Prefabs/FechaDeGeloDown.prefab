@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6624187493014663695}
   - component: {fileID: 3093449428564645994}
   - component: {fileID: 2691151190054720529}
-  - component: {fileID: 1999588363963683920}
   - component: {fileID: 5396586915442003118}
+  - component: {fileID: 8007142180572671495}
   m_Layer: 0
-  m_Name: FechaDeGelo
+  m_Name: FechaDeGeloDown
   m_TagString: FlechaDeGelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9002422506705029563}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 3.73, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &3093449428564645994
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -108,18 +108,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14288186, y: 0.13107397}
   m_EdgeRadius: 0
---- !u!114 &1999588363963683920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9002422506705029563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d69ccd3f49fcd0459374c27146f3d25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &5396586915442003118
 Rigidbody2D:
   serializedVersion: 4
@@ -141,3 +129,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8007142180572671495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002422506705029563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a5c4a767cfd374aab791422ea3b66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

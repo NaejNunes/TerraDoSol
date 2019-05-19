@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     //Variavel que da a velocidade em que o player ira andar.
     public float velocidade;
 
-    
-    [SerializeField]
     //Vairiaveis para definir os atributos basicos do player.
     public static int vida, maxVida, mana, maxMana,
                       fome, sede, 
@@ -22,13 +20,16 @@ public class PlayerController : MonoBehaviour
     public static float x, y;
 
     //Variavel para lincar a tabela de atributos do player.
-    public GameObject TabelaDoHeroi, ataqueMagico;
+    public GameObject TabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown;
 
     //Variavel que liga o texto da vida na tabela do heroi.
     public Text txtVida, txtMana,
            txtFome, txtSede, 
            txtPontos, txtForca, txtInteligencia, txtAgilidade, txtConstituicao,
            txtExperiencia, txtNivel;
+
+    //Define a direcao do player.
+    public static bool direcaoDireita, direcaoEsquerda, direcaoBaixo, direcaoCima;
 
     // Start is called before the first frame update.
     void Start()
@@ -48,7 +49,6 @@ public class PlayerController : MonoBehaviour
         tempoSede = 3;
 
         //Atributos inicial do Player
-        pontos = 5;
         forca = 1;
         inteligencia = 1;
         agilidade = 1;
@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame.
     void Update()
     {
-
         Debug.Log("Tempo da Mada:" +tempoMana+ " Segundos:" + segundos+ " milesimos:" +milesimos+ "Tempo Spown:" +GameController.segundosDeSpown );
         //Chama a função Tempo
         Tempo();
@@ -104,7 +103,8 @@ public class PlayerController : MonoBehaviour
         if (experiencia >= maxExperiencia)
         {
             nivel = nivel + 1;
-            pontos += 5; 
+            experiencia = 0;
+            pontos = 5; 
         }
 
         //recebe o arquivo txt e da as seguintes informacoes a ela...
@@ -145,23 +145,44 @@ public class PlayerController : MonoBehaviour
     {
         //Função que faz a movimentação do player na direita e esquerda.
         if (Input.GetAxis("Horizontal") > 0)
-        {
+        {           
+            direcaoDireita = true;
+            direcaoEsquerda = false;
+            direcaoCima = false;
+            direcaoBaixo = false;
+
             transform.Translate(Vector2.right * velocidade * Time.deltaTime);
+
         }
 
         if (Input.GetAxis("Horizontal") < 0)
         {
+            direcaoDireita = false;
+            direcaoEsquerda = true;
+            direcaoCima = false;
+            direcaoBaixo = false;
+        
             transform.Translate(Vector2.left * velocidade * Time.deltaTime);
         }
 
         //Movimentação do player para cima e baixo.
         if (Input.GetAxis("Vertical") > 0)
         {
+            direcaoDireita = false;
+            direcaoEsquerda = false;
+            direcaoCima = true;
+            direcaoBaixo = false;
+
             transform.Translate(Vector2.up * velocidade * Time.deltaTime);
         }
 
         if (Input.GetAxis("Vertical") < 0)
         {
+            direcaoDireita = false;
+            direcaoEsquerda = false;
+            direcaoCima = false;
+            direcaoBaixo = true;
+
             transform.Translate(Vector2.down * velocidade * Time.deltaTime);
         }      
     }
@@ -189,11 +210,34 @@ public class PlayerController : MonoBehaviour
     }
     //Instacia uma flecha de gelo.
     public void FechaDeGelo()
-    {
+    {    
         if (Input.GetButtonDown("Fire1"))
         {
             mana = mana - 2;
-            Instantiate(this.ataqueMagico, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+
+            if (direcaoDireita == true)
+            {
+                Instantiate(this.ataqueMagicoRight, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+
+            }
+
+            if (direcaoEsquerda == true)
+            {
+                Instantiate(this.ataqueMagicoLeft, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+
+            }
+
+            if (direcaoCima == true)
+            {
+                Instantiate(this.ataqueMagicoUp, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+
+            }
+
+            if (direcaoBaixo == true)
+            {
+                Instantiate(this.ataqueMagicoDown, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+
+            }
         }
     }
 
