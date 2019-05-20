@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     //Variavel para lincar a tabela de atributos do player.
     public GameObject TabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown;
 
+    private Animator animacao;
+
     //Variavel que liga o texto da vida na tabela do heroi.
     public Text txtVida, txtMana,
            txtFome, txtSede, 
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
         experiencia = 0;
         nivel = 1;
         experienciaAuxiliar = 0;
+
+        animacao = GetComponent<Animator>();
     }
             
     // Update is called once per frame.
@@ -150,106 +154,53 @@ public class PlayerController : MonoBehaviour
 
         if (y == 1)
         {
+            direcaoDireita = false;
+            direcaoEsquerda = false;
+            direcaoCima = true;
+            direcaoBaixo = false;
+
             transform.position += new Vector3(0, velocidade, 0);
+
+            animacao.SetInteger("Direcao", 2);
+
         }
 
         else if (x == 1)
-        {
-            transform.position += new Vector3(velocidade, 0, 0);
-        }
-        else if (y == -1)
-        {
-            transform.position += new Vector3(0, -velocidade, 0);
-        }
-
-        else if (x == -1)
-        {
-            transform.position += new Vector3(-velocidade, 0, 0);
-        }
-
-
-        /*
-        //Função que faz a movimentação do player na direita e esquerda.
-        if (Input.GetAxis("Horizontal") > 0)
         {
             direcaoDireita = true;
             direcaoEsquerda = false;
             direcaoCima = false;
             direcaoBaixo = false;
 
-            transform.Translate(Vector2.right * velocidade * Time.deltaTime);
+            transform.position += new Vector3(velocidade, 0, 0);
 
-            GetComponent<Animator>().SetBool("AndarCima", false);
-            GetComponent<Animator>().SetBool("AndarDireita", true);
-            GetComponent<Animator>().SetBool("AndarBaixo", false);
-            GetComponent<Animator>().SetBool("ParadoCima", false);
-            GetComponent<Animator>().SetBool("ParadoDireita", false);
-            GetComponent<Animator>().SetBool("ParadoBaixo", false);
-
+            animacao.SetInteger("Direcao", 1);
         }
-        else
-        {        
-            GetComponent<Animator>().SetBool("ParadoDireita", true);          
-        }
-
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            direcaoDireita = false;
-            direcaoEsquerda = true;
-            direcaoCima = false;
-            direcaoBaixo = false;
-
-            transform.Translate(Vector2.left * velocidade * Time.deltaTime);
-        }
-
-        //Movimentação do player para cima e baixo.
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            direcaoDireita = false;
-            direcaoEsquerda = false;
-            direcaoCima = true;
-            direcaoBaixo = false;
-
-            transform.Translate(Vector2.up * velocidade * Time.deltaTime);
-
-            GetComponent<Animator>().SetBool("AndarCima", true);
-            GetComponent<Animator>().SetBool("AndarDireita", false);
-            GetComponent<Animator>().SetBool("AndarBaixo", false);
-            GetComponent<Animator>().SetBool("ParadoCima", false);
-            GetComponent<Animator>().SetBool("ParadoDireita", false);
-            GetComponent<Animator>().SetBool("ParadoBaixo", false);
-        }
-        else
-        {        
-            GetComponent<Animator>().SetBool("ParadoCima", true);
-            
-
-        }
-
-        if (Input.GetAxis("Vertical") < 0)
+        else if (y == -1)
         {
             direcaoDireita = false;
             direcaoEsquerda = false;
             direcaoCima = false;
             direcaoBaixo = true;
 
-            transform.Translate(Vector2.down * velocidade * Time.deltaTime);
+            transform.position += new Vector3(0, -velocidade, 0);
 
-            GetComponent<Animator>().SetBool("AndarCima", false);
-            GetComponent<Animator>().SetBool("AndarDireita", false);
-            GetComponent<Animator>().SetBool("AndarBaixo", true);
-            GetComponent<Animator>().SetBool("ParadoCima", false);
-            GetComponent<Animator>().SetBool("ParadoDireita", false);
-            GetComponent<Animator>().SetBool("ParadoBaixo", false);
-            GetComponent<Animator>().SetBool("ParadoCima", false);
+            animacao.SetInteger("Direcao", 0);
+
         }
-        else
+
+        else if (x == -1)
         {
-         
-            GetComponent<Animator>().SetBool("ParadoBaixo", true);
-          
+            direcaoDireita = false;
+            direcaoEsquerda = true;
+            direcaoCima = false;
+            direcaoBaixo = false;
+
+            transform.position += new Vector3(-velocidade, 0, 0);
+
+            animacao.SetInteger("Direcao", 3);
+
         }
-        */
     }
 
 

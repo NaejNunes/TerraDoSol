@@ -30,9 +30,6 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(" Segundos:" + segundos + " milesimos:" + milesimos + "Tempo Spown:" + segundosDeSpown);
-
-
         Tempo();
 
         //Recebe a posição 
