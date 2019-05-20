@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
                       fome, sede, 
                       milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede,
                       pontos, forca, inteligencia, agilidade, constituicao,
-                      experiencia, maxExperiencia, nivel;
+                      experiencia, maxExperiencia, experienciaAuxiliar,  nivel;
   
     //Variavel usada para receber as posicoes.
     public static float x, y;
@@ -58,10 +58,11 @@ public class PlayerController : MonoBehaviour
         maxExperiencia = 100;
         experiencia = 0;
         nivel = 1;
+        experienciaAuxiliar = 0;
     }
             
     // Update is called once per frame.
-    void Update()
+    void FixedUpdate()
     {
         Debug.Log("Tempo da Mada:" +tempoMana+ " Segundos:" + segundos+ " milesimos:" +milesimos+ "Tempo Spown:" +GameController.segundosDeSpown );
         //Chama a função Tempo
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour
         if (experiencia >= maxExperiencia)
         {
             nivel = nivel + 1;
-            experiencia = 0;
+            experiencia = 0;            
             pontos = 5; 
         }
 
@@ -145,7 +146,7 @@ public class PlayerController : MonoBehaviour
     {
         //Função que faz a movimentação do player na direita e esquerda.
         if (Input.GetAxis("Horizontal") > 0)
-        {           
+        {
             direcaoDireita = true;
             direcaoEsquerda = false;
             direcaoCima = false;
@@ -153,6 +154,17 @@ public class PlayerController : MonoBehaviour
 
             transform.Translate(Vector2.right * velocidade * Time.deltaTime);
 
+            GetComponent<Animator>().SetBool("AndarCima", false);
+            GetComponent<Animator>().SetBool("AndarDireita", true);
+            GetComponent<Animator>().SetBool("AndarBaixo", false);
+            GetComponent<Animator>().SetBool("ParadoCima", false);
+            GetComponent<Animator>().SetBool("ParadoDireita", false);
+            GetComponent<Animator>().SetBool("ParadoBaixo", false);
+
+        }
+        else
+        {        
+            GetComponent<Animator>().SetBool("ParadoDireita", true);          
         }
 
         if (Input.GetAxis("Horizontal") < 0)
@@ -161,7 +173,7 @@ public class PlayerController : MonoBehaviour
             direcaoEsquerda = true;
             direcaoCima = false;
             direcaoBaixo = false;
-        
+
             transform.Translate(Vector2.left * velocidade * Time.deltaTime);
         }
 
@@ -174,6 +186,19 @@ public class PlayerController : MonoBehaviour
             direcaoBaixo = false;
 
             transform.Translate(Vector2.up * velocidade * Time.deltaTime);
+
+            GetComponent<Animator>().SetBool("AndarCima", true);
+            GetComponent<Animator>().SetBool("AndarDireita", false);
+            GetComponent<Animator>().SetBool("AndarBaixo", false);
+            GetComponent<Animator>().SetBool("ParadoCima", false);
+            GetComponent<Animator>().SetBool("ParadoDireita", false);
+            GetComponent<Animator>().SetBool("ParadoBaixo", false);
+        }
+        else
+        {        
+            GetComponent<Animator>().SetBool("ParadoCima", true);
+            
+
         }
 
         if (Input.GetAxis("Vertical") < 0)
@@ -184,8 +209,22 @@ public class PlayerController : MonoBehaviour
             direcaoBaixo = true;
 
             transform.Translate(Vector2.down * velocidade * Time.deltaTime);
-        }      
-    }
+
+            GetComponent<Animator>().SetBool("AndarCima", false);
+            GetComponent<Animator>().SetBool("AndarDireita", false);
+            GetComponent<Animator>().SetBool("AndarBaixo", true);
+            GetComponent<Animator>().SetBool("ParadoCima", false);
+            GetComponent<Animator>().SetBool("ParadoDireita", false);
+            GetComponent<Animator>().SetBool("ParadoBaixo", false);
+            GetComponent<Animator>().SetBool("ParadoCima", false);
+        }
+        else
+        {
+         
+            GetComponent<Animator>().SetBool("ParadoBaixo", true);
+          
+        }
+    }    
 
     //Função que carrega a tela do herois com todos os atributos do heroi.
     public void CarregarTabelaDoHeroi()
