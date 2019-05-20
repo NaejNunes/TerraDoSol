@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
                       experiencia, maxExperiencia, experienciaAuxiliar,  nivel;
   
     //Variavel usada para receber as posicoes.
-    public static float x, y;
+    public static float X, Y;
 
     //Variavel para lincar a tabela de atributos do player.
     public GameObject TabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown;
@@ -63,7 +63,8 @@ public class PlayerController : MonoBehaviour
             
     // Update is called once per frame.
     void FixedUpdate()
-    {
+    {      
+
         Debug.Log("Tempo da Mada:" +tempoMana+ " Segundos:" + segundos+ " milesimos:" +milesimos+ "Tempo Spown:" +GameController.segundosDeSpown );
         //Chama a função Tempo
         Tempo();
@@ -137,13 +138,37 @@ public class PlayerController : MonoBehaviour
         CarregarTabelaDoHeroi();
 
         //Atribuir a posicao nas variaveis.
-        x = transform.position.x;
-        y = transform.position.y;
+        X = transform.position.x;
+        Y = transform.position.y;
     }
 
     //Movimentação do player.
     public void MovimentaçãoPlayer()
     {
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+
+        if (y == 1)
+        {
+            transform.position += new Vector3(0, velocidade, 0);
+        }
+
+        else if (x == 1)
+        {
+            transform.position += new Vector3(velocidade, 0, 0);
+        }
+        else if (y == -1)
+        {
+            transform.position += new Vector3(0, -velocidade, 0);
+        }
+
+        else if (x == -1)
+        {
+            transform.position += new Vector3(-velocidade, 0, 0);
+        }
+
+
+        /*
         //Função que faz a movimentação do player na direita e esquerda.
         if (Input.GetAxis("Horizontal") > 0)
         {
@@ -224,7 +249,9 @@ public class PlayerController : MonoBehaviour
             GetComponent<Animator>().SetBool("ParadoBaixo", true);
           
         }
-    }    
+        */
+    }
+
 
     //Função que carrega a tela do herois com todos os atributos do heroi.
     public void CarregarTabelaDoHeroi()
@@ -256,25 +283,25 @@ public class PlayerController : MonoBehaviour
 
             if (direcaoDireita == true)
             {
-                Instantiate(this.ataqueMagicoRight, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+                Instantiate(this.ataqueMagicoRight, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
 
             }
 
             if (direcaoEsquerda == true)
             {
-                Instantiate(this.ataqueMagicoLeft, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+                Instantiate(this.ataqueMagicoLeft, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
 
             }
 
             if (direcaoCima == true)
             {
-                Instantiate(this.ataqueMagicoUp, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+                Instantiate(this.ataqueMagicoUp, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
 
             }
 
             if (direcaoBaixo == true)
             {
-                Instantiate(this.ataqueMagicoDown, new Vector2(PlayerController.x, PlayerController.y), Quaternion.identity);
+                Instantiate(this.ataqueMagicoDown, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
 
             }
         }

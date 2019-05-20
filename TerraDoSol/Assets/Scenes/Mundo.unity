@@ -2309,7 +2309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5ee3176650ad5498406d037648d28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 2
+  velocidade: 0.05
   TabelaDoHeroi: {fileID: 1157842754}
   ataqueMagicoRight: {fileID: 9002422506705029563, guid: 2b7a40db892fa77468c225001f6d0227,
     type: 3}
