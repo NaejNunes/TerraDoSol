@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     //Variavel usada para receber as posicoes.
     public static float X, Y;
 
+
     //Variavel para lincar a tabela de atributos do player.
     public GameObject TabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown;
 
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
         nivel = 1;
         experienciaAuxiliar = 0;
 
+        //Inicia a variavel com o animator.
         animacao = GetComponent<Animator>();
     }
             
@@ -162,6 +164,7 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(0, velocidade, 0);
 
             animacao.SetInteger("Direcao", 2);
+            animacao.SetBool("AndarBaixo", true);
 
         }
 
@@ -175,6 +178,8 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(velocidade, 0, 0);
 
             animacao.SetInteger("Direcao", 1);
+            animacao.SetBool("AndarBaixo", true);
+
         }
         else if (y == -1)
         {
@@ -186,6 +191,8 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(0, -velocidade, 0);
 
             animacao.SetInteger("Direcao", 0);
+            animacao.SetBool("AndarBaixo", true);
+
 
         }
 
@@ -199,7 +206,13 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(-velocidade, 0, 0);
 
             animacao.SetInteger("Direcao", 3);
+            animacao.SetBool("AndarBaixo", true);
 
+
+        }
+        else
+        {
+            animacao.SetBool("AndarBaixo", false);
         }
     }
 
@@ -240,8 +253,7 @@ public class PlayerController : MonoBehaviour
 
             if (direcaoEsquerda == true)
             {
-                Instantiate(this.ataqueMagicoLeft, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
-
+                Instantiate(this.ataqueMagicoLeft, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);               
             }
 
             if (direcaoCima == true)
