@@ -98,7 +98,66 @@ public class GameController : MonoBehaviour
         {
             minutos = minutos - 1;
             segundos = 60;          
-        }    
-        
+        }           
+    }
+
+    //Adiciona pontos no atributos
+    public void AdicionarForca()
+    {
+        Debug.Log(PlayerController.pontos.ToString());
+        PlayerController.forcaOrigem = PlayerController.forca + 1;
+
+        PlayerController.pontos -= 1;
+    }
+
+    public void AdicionarInteligencia()
+    {
+        PlayerController.inteligenciaOrigem = PlayerController.inteligencia + 1; ;
+
+        PlayerController.pontos -= 1;
+    }
+
+    public void AdicionarAgilidade()
+    {
+        PlayerController.agilidadeOrigem = PlayerController.agilidade + 1;
+
+        PlayerController.pontos -= 1;
+    }
+
+    public void AdicionarConstituicao()
+    {
+        PlayerController.constituicaoOrigem = PlayerController.constituicao + 1;
+
+        PlayerController.pontos -= 1;
+    }
+
+    //Diminue pontos no atributos
+    public void DiminuirForca()
+    {
+        Debug.Log(PlayerController.pontos.ToString());
+        PlayerController.forca -= 1;
+
+        PlayerController.pontos += 1;
+    }
+
+    public void DiminuirInteligencia()
+    {
+        PlayerController.inteligencia -= 1;
+
+        PlayerController.pontos += 1;
+    }
+
+    public void DiminuirAgilidade()
+    {
+        PlayerController.agilidade -= 1;
+
+        PlayerController.pontos += 1;
+    }
+
+    public void DiminuirConstituicao()
+    {
+        PlayerController.constituicao -= 1;
+
+        PlayerController.pontos += 1;
     }
 }

@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public static int vida, maxVida, mana, maxMana,
                       fome, sede, 
                       milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede,
-                      pontos, forca, inteligencia, agilidade, constituicao,
+                      pontos, forcaOrigem, forca, inteligenciaOrigem, inteligencia,  agilidadeOrigem, agilidade, constituicaoOrigem, constituicao, 
                       experiencia, maxExperiencia, experienciaAuxiliar,  nivel,
                       ataqueFisico, ataqueMagico, defesaFisica, defesaMagica, regenDeVida, regenDeMana ;
   
@@ -22,12 +22,22 @@ public class PlayerController : MonoBehaviour
                         criticoPorcentagem;
 
     //Variavel para lincar a tabela de atributos do player.
-    public GameObject tabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown;
-                                           
+    public GameObject tabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown, btnForca, 
+                      btnInteligencia, btnAgilidade, btnConstituicao,
+                      btnForcaTirar, btnInteligenciaTirar, btnAgilidadeTirar, btnConstituicaoTirar;
+
+    //visualiza o texto
+    public Text txtVida, txtMana,
+           txtFome, txtSede,
+           txtPontos, txtForca, txtInteligencia, txtAgilidade, txtConstituicao,
+           txtExperiencia, txtNivel; 
+
     private Animator animacao;   
 
     //Define a direcao do player.
     public static bool direcaoDireita, direcaoEsquerda, direcaoBaixo, direcaoCima;
+
+    public bool CheckTabela;
 
     // Start is called before the first frame update.
     void Start()
@@ -47,10 +57,10 @@ public class PlayerController : MonoBehaviour
         tempoSede = 3;
 
         //Atributos inicial do Player
-        forca = 1;
-        inteligencia = 1;
-        agilidade = 1;
-        constituicao = 1;
+        forcaOrigem = 1;
+        inteligenciaOrigem = 1;
+        agilidadeOrigem = 1;
+        constituicaoOrigem = 3;
 
         //Da valor ao experiencia.
         maxExperiencia = 100;
@@ -70,6 +80,8 @@ public class PlayerController : MonoBehaviour
         criticoPorcentagem = 0;
         regenDeVida = 1;
         regenDeMana = 1;
+
+        CheckTabela = true;
     }
             
     // Update is called once per frame.
@@ -112,6 +124,33 @@ public class PlayerController : MonoBehaviour
             tempoMana = 1;
         }
 
+        //Atribuir a posicao nas variaveis.
+        X = transform.position.x;
+        Y = transform.position.y;
+
+        //Chama a tabela do heroi quando apertar o botão.
+        if (Input.GetKeyDown(KeyCode.C))
+        {        
+            if (CheckTabela == true)
+            {
+                CheckTabela = false;
+            }
+            else
+            {
+                CheckTabela = true;
+            }
+
+            if (CheckTabela == true)
+            {
+               tabelaDoHeroi.SetActive(true);
+            }
+
+            if (CheckTabela == false)
+            {
+                tabelaDoHeroi.SetActive(false);
+            }
+        }
+
         //Condicao que passa de nivel.
         if (experiencia >= maxExperiencia)
         {
@@ -120,13 +159,61 @@ public class PlayerController : MonoBehaviour
             pontos += 5;
         }
 
+        //ativa e desativa os botoes na tabela para distribuir pontos
+        if (pontos <= 0)
+        {
+            //Adiciona
+            btnForca.SetActive(false);
+            btnInteligencia.SetActive(false);
+            btnAgilidade.SetActive(false);
+            btnConstituicao.SetActive(false);
 
-        //Atribuir a posicao nas variaveis.
-        X = transform.position.x;
-        Y = transform.position.y;
+            //Diminue
+            btnForcaTirar.SetActive(false);
+            btnInteligenciaTirar.SetActive(false);
+            btnAgilidadeTirar.SetActive(false);
+            btnConstituicaoTirar.SetActive(false);
+        }
+        else if (pontos >= 1)
+        {
+            btnForca.SetActive(true);
+            btnInteligencia.SetActive(true);
+            btnAgilidade.SetActive(true);
+            btnConstituicao.SetActive(true);
 
-        CarregarTabelaDoHeroi();
+            //Diminue
+            btnForcaTirar.SetActive(true);
+            btnInteligenciaTirar.SetActive(true);
+            btnAgilidadeTirar.SetActive(true);
+            btnConstituicaoTirar.SetActive(true);
+        }
+
+        //recebe o arquivo txt e da as seguintes informacoes a ela...
+        txtVida.text = "" + vida + "/" + maxVida;
+
+        txtMana.text = "" + mana + "/" + maxMana;
+
+        txtFome.text = "" + fome + "/" + "10";
+
+        txtSede.text = "" + sede + "/" + "10";
+
+        //Ligando os arquivos txt dos atributos;
+        txtForca.text = "" + forcaOrigem;
+
+        txtInteligencia.text = "" + inteligenciaOrigem;
+
+        txtAgilidade.text = "" + agilidadeOrigem;
+
+        txtConstituicao.text = "" + constituicaoOrigem; 
+
+        //Nivel e Experiencia sendo ligados ao texto.
+        txtExperiencia.text = "" + experiencia + "/" + maxExperiencia;
+
+        txtNivel.text = "" + nivel;
+
+        txtPontos.text = "" + pontos;
     }
+
 
     //Movimentação do player.
     public void MovimentacaoPlayer()
@@ -193,15 +280,6 @@ public class PlayerController : MonoBehaviour
             animacao.SetBool("AndarBaixo", false);
         }
     }
-
-    public void CarregarTabelaDoHeroi()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            tabelaDoHeroi.SetActive(true);
-        }
-    }
-
     //Instacia uma flecha de gelo.
 
     public void FechaDeGelo()
