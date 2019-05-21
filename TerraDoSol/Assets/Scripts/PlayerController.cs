@@ -14,22 +14,17 @@ public class PlayerController : MonoBehaviour
                       fome, sede, 
                       milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede,
                       pontos, forca, inteligencia, agilidade, constituicao,
-                      experiencia, maxExperiencia, experienciaAuxiliar,  nivel;
+                      experiencia, maxExperiencia, experienciaAuxiliar,  nivel,
+                      ataqueFisico, ataqueMagico, defesaFisica, defesaMagica, regenDeVida, regenDeMana ;
   
     //Variavel usada para receber as posicoes.
-    public static float X, Y;
-
+    public static float X, Y,
+                        criticoPorcentagem;
 
     //Variavel para lincar a tabela de atributos do player.
-    public GameObject TabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown;
-
-    private Animator animacao;
-
-    //Variavel que liga o texto da vida na tabela do heroi.
-    public Text txtVida, txtMana,
-           txtFome, txtSede, 
-           txtPontos, txtForca, txtInteligencia, txtAgilidade, txtConstituicao,
-           txtExperiencia, txtNivel;
+    public GameObject tabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown;
+                                           
+    private Animator animacao;   
 
     //Define a direcao do player.
     public static bool direcaoDireita, direcaoEsquerda, direcaoBaixo, direcaoCima;
@@ -46,7 +41,7 @@ public class PlayerController : MonoBehaviour
         sede = 10;
 
         //Tempo
-        tempoVida = 60;
+        tempoVida = 50;
         tempoMana = 1;
         tempoFome = 6;
         tempoSede = 3;
@@ -62,24 +57,32 @@ public class PlayerController : MonoBehaviour
         experiencia = 0;
         nivel = 1;
         experienciaAuxiliar = 0;
+        pontos = 5;
 
         //Inicia a variavel com o animator.
         animacao = GetComponent<Animator>();
+
+        //Inicia os Atributos
+        ataqueFisico = 1;
+        ataqueMagico = 0;
+        defesaFisica = 1;
+        defesaMagica = 0;
+        criticoPorcentagem = 0;
+        regenDeVida = 1;
+        regenDeMana = 1;
     }
             
     // Update is called once per frame.
     void FixedUpdate()
     {      
-
-        Debug.Log("Tempo da Mada:" +tempoMana+ " Segundos:" + segundos+ " milesimos:" +milesimos+ "Tempo Spown:" +GameController.segundosDeSpown );
         //Chama a função Tempo
         Tempo();
 
         //Chama a funcao para movimentar o player.
-        MovimentaçãoPlayer();
+        MovimentacaoPlayer();
 
         //Condicao que verifica se tem mana suficiente;
-        if(mana > 1)
+        if (mana > 1)
         {
             //Chama a funcao que instancia a Habilidade.
             FechaDeGelo();
@@ -102,70 +105,50 @@ public class PlayerController : MonoBehaviour
             mana = maxMana;
         }
 
+        //Condição que aumenta a manda no tempo descrito
         if (tempoMana == 0)
         {
             mana = mana + 1;
             tempoMana = 1;
         }
 
+        //Condicao que passa de nivel.
         if (experiencia >= maxExperiencia)
         {
             nivel = nivel + 1;
-            experiencia = 0;            
-            pontos = 5; 
+            experiencia = 0;
+            pontos += 5;
         }
 
-        //recebe o arquivo txt e da as seguintes informacoes a ela...
-        txtVida.text = "" + vida + "/" + maxVida;
-
-        txtMana.text = "" + mana + "/" + maxMana;
-
-        txtFome.text = "" + fome + "/" + "10";
-
-        txtSede.text = "" + sede + "/" + "10";
-
-        //Ligando os arquivos txt dos atributos;
-        txtForca.text = "" + forca;
-
-        txtInteligencia.text = "" + inteligencia;
-
-        txtAgilidade.text = "" + agilidade;
-
-        txtConstituicao.text = "" + constituicao;
-
-        //Nivel e Experiencia sendo ligados ao texto.
-        txtExperiencia.text = "" + experiencia + "/" + maxExperiencia;
-
-        txtNivel.text = "" + nivel;
-
-        txtPontos.text = "" + pontos;
-
-        //Chama a tela do herois em jogo
-        CarregarTabelaDoHeroi();
 
         //Atribuir a posicao nas variaveis.
         X = transform.position.x;
         Y = transform.position.y;
+
+        CarregarTabelaDoHeroi();
     }
 
     //Movimentação do player.
-    public void MovimentaçãoPlayer()
+    public void MovimentacaoPlayer()
     {
+        //atribui os valores para movimentar pelos botoes
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
         if (y == 1)
         {
+            //Ajuda a identificar em qual posição está, ajuda no sistema de soltar ataques e magia.
             direcaoDireita = false;
             direcaoEsquerda = false;
             direcaoCima = true;
             direcaoBaixo = false;
 
+            //Recebe a posicao para se movimentar.
             transform.position += new Vector3(0, velocidade, 0);
 
+            //Recebe as animações
             animacao.SetInteger("Direcao", 2);
             animacao.SetBool("AndarBaixo", true);
-
         }
 
         else if (x == 1)
@@ -179,7 +162,6 @@ public class PlayerController : MonoBehaviour
 
             animacao.SetInteger("Direcao", 1);
             animacao.SetBool("AndarBaixo", true);
-
         }
         else if (y == -1)
         {
@@ -192,8 +174,6 @@ public class PlayerController : MonoBehaviour
 
             animacao.SetInteger("Direcao", 0);
             animacao.SetBool("AndarBaixo", true);
-
-
         }
 
         else if (x == -1)
@@ -207,8 +187,6 @@ public class PlayerController : MonoBehaviour
 
             animacao.SetInteger("Direcao", 3);
             animacao.SetBool("AndarBaixo", true);
-
-
         }
         else
         {
@@ -216,60 +194,55 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-    //Função que carrega a tela do herois com todos os atributos do heroi.
     public void CarregarTabelaDoHeroi()
     {
-
-        //Condição que se o botão "C" do teclado for acionbado ele abre a tela da Tabela do Herói.
         if (Input.GetKeyDown(KeyCode.C))
         {
-            TabelaDoHeroi.SetActive(true);
+            tabelaDoHeroi.SetActive(true);
         }
     }
 
-    //Detecta a colisao com algo solido em cena
-    public void OnCollisionEnter2D(Collision2D colidir)
-    {
-
-        //Condição para checar se o player colidiu com o inimigo e tirar 1 de vida.
-        if (colidir.gameObject.CompareTag("Inimigo"))
-        {
-            vida = vida - 1;
-        }
-    }
     //Instacia uma flecha de gelo.
+
     public void FechaDeGelo()
-    {    
-        if (Input.GetButtonDown("Fire1"))
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             mana = mana - 2;
 
             if (direcaoDireita == true)
             {
                 Instantiate(this.ataqueMagicoRight, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
-
             }
 
             if (direcaoEsquerda == true)
             {
-                Instantiate(this.ataqueMagicoLeft, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);               
+                Instantiate(this.ataqueMagicoLeft, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
             }
 
             if (direcaoCima == true)
             {
                 Instantiate(this.ataqueMagicoUp, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
-
             }
 
             if (direcaoBaixo == true)
             {
                 Instantiate(this.ataqueMagicoDown, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
-
             }
         }
     }
 
+    //Detecta a colisao com algo solido em cena
+    public void OnCollisionEnter2D(Collision2D colidir)
+    {
+        //Condição para checar se o player colidiu com o inimigo e tirar 1 de vida.
+        if (colidir.gameObject.CompareTag("Inimigo"))
+        {
+            vida = vida - 1;
+        }
+    }   
+
+    //Metodo que simula um cronometro.
     public static void Tempo()
     {
         milesimos = milesimos - 1;

@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 5365aa814486e4356841731775eab6ec
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: hero-walk-front-2_0
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -104,7 +105,27 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: hero-walk-front-2_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 2
+        width: 13
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4bf880b235380e479f53d3903ceeafa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
