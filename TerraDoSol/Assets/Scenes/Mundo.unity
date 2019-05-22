@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 96452812}
   - component: {fileID: 96452811}
   m_Layer: 0
-  m_Name: btnAgilidade
+  m_Name: btnAgilidadeAdicionar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.32156864, g: 0.2901961, b: 0.2901961, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1148800346}
+      - m_Target: {fileID: 1859899436}
         m_MethodName: AdicionarAgilidade
         m_Mode: 1
         m_Arguments:
@@ -2075,7 +2075,7 @@ GameObject:
   - component: {fileID: 350301154}
   - component: {fileID: 350301153}
   m_Layer: 0
-  m_Name: btnForca
+  m_Name: btnForcaAdicionar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2122,8 +2122,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.23584908, g: 0.21471167, b: 0.21471167, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 0.3207547, g: 0.28898183, b: 0.28898183, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2141,7 +2141,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1148800346}
+      - m_Target: {fileID: 1859899436}
         m_MethodName: AdicionarForca
         m_Mode: 1
         m_Arguments:
@@ -2191,6 +2191,104 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350301151}
   m_CullTransparentMesh: 0
+--- !u!1 &364100142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 364100143}
+  - component: {fileID: 364100146}
+  - component: {fileID: 364100145}
+  - component: {fileID: 364100144}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &364100143
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364100142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1859899435}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &364100144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364100142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &364100145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364100142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &364100146
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364100142}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &373812919
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,6 +2443,22 @@ MonoBehaviour:
     type: 3}
   ataqueMagicoDown: {fileID: 9002422506705029563, guid: 3ac578256950ae04786cf794688a3cfb,
     type: 3}
+  btnForca: {fileID: 350301151}
+  btnInteligencia: {fileID: 1051316213}
+  btnAgilidade: {fileID: 96452809}
+  btnConstituicao: {fileID: 1948990948}
+  txtVida: {fileID: 681977065}
+  txtMana: {fileID: 1951451933}
+  txtFome: {fileID: 566464686}
+  txtSede: {fileID: 710305998}
+  txtPontos: {fileID: 895574066}
+  txtForca: {fileID: 1222466632}
+  txtInteligencia: {fileID: 1850875613}
+  txtAgilidade: {fileID: 1468849883}
+  txtConstituicao: {fileID: 1871776648}
+  txtExperiencia: {fileID: 864678297}
+  txtNivel: {fileID: 387451693}
+  CheckTabela: 0
 --- !u!95 &373812925
 Animator:
   serializedVersion: 3
@@ -6349,7 +6463,7 @@ GameObject:
   - component: {fileID: 1051316216}
   - component: {fileID: 1051316215}
   m_Layer: 0
-  m_Name: btnInteligencia
+  m_Name: btnInteligenciaAdicionar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6397,7 +6511,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.32156864, g: 0.2901961, b: 0.2901961, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6415,7 +6529,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1148800346}
+      - m_Target: {fileID: 1859899436}
         m_MethodName: AdicionarInteligencia
         m_Mode: 1
         m_Arguments:
@@ -6724,7 +6838,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: _ _ _ _ _ _ _ _ _ _ _ _
+  m_Text: Naej
 --- !u!222 &1121994765
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6854,21 +6968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e8a005708470d45b2c1ff77b2bfbd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnForca: {fileID: 350301151}
-  btnInteligencia: {fileID: 1051316213}
-  btnAgilidade: {fileID: 96452809}
-  btnConstituicao: {fileID: 1948990948}
-  txtVida: {fileID: 681977065}
-  txtMana: {fileID: 1951451933}
-  txtFome: {fileID: 566464686}
-  txtSede: {fileID: 710305998}
-  txtPontos: {fileID: 895574066}
-  txtForca: {fileID: 1222466632}
-  txtInteligencia: {fileID: 1850875613}
-  txtAgilidade: {fileID: 1468849883}
-  txtConstituicao: {fileID: 1871776648}
-  txtExperiencia: {fileID: 864678297}
-  txtNivel: {fileID: 387451693}
 --- !u!1 &1151583767
 GameObject:
   m_ObjectHideFlags: 0
@@ -7987,7 +8086,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: _ _ _ _ _ _ _ _ _ _ _ _
+  m_Text: Elfo
 --- !u!222 &1272918268
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9144,7 +9243,7 @@ GameObject:
   - component: {fileID: 1574466763}
   - component: {fileID: 1574466762}
   m_Layer: 0
-  m_Name: txtClasseDescritivo (1)
+  m_Name: txtClasse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9202,9 +9301,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '_ _ _ _ _ _ _ _ _ _ _ _
-
-'
+  m_Text: Mago
 --- !u!222 &1574466763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9859,6 +9956,72 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1660752991}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1668028386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1668028389}
+  - component: {fileID: 1668028388}
+  - component: {fileID: 1668028387}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1668028387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668028386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1668028388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668028386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1668028389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668028386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1698828022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10985,6 +11148,7 @@ Transform:
   m_Children:
   - {fileID: 519420032}
   - {fileID: 994604496}
+  - {fileID: 364100143}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11628,7 +11792,7 @@ GameObject:
   - component: {fileID: 1948990951}
   - component: {fileID: 1948990950}
   m_Layer: 0
-  m_Name: btnconstituicao
+  m_Name: btnconstituicaoAdicionar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11676,7 +11840,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.32156864, g: 0.2901961, b: 0.2901961, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -11694,7 +11858,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1148800346}
+      - m_Target: {fileID: 1859899436}
         m_MethodName: AdicionarConstituicao
         m_Mode: 1
         m_Arguments:
