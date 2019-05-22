@@ -119,10 +119,16 @@ public class PlayerController : MonoBehaviour
         }
 
         //Condição que aumenta a manda no tempo descrito
+        if (mana >= 5)
+        {
+            //Controla o tempo da regeneracao da mana
+
+            tempoMana -= 1;
+        }
         if (tempoMana == 0)
         {
             mana = mana + 1;
-            tempoMana = 1;
+            tempoMana = 30;
         }
 
         //Atribuir a posicao nas variaveis.
@@ -320,9 +326,6 @@ public class PlayerController : MonoBehaviour
 
             //Controla o tempo da regeneracao da vida
             tempoVida = tempoVida - 1;
-
-            //Controla o tempo da regeneracao da mana
-            tempoMana = tempoMana - 1;
 
             milesimos = 60;
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InimigoController : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class InimigoController : MonoBehaviour
     private int vida, maxVida, velocidade, direcao, milesimos, segundos;
 
     public GameObject[] vidaObjeto;
-     
+
+    Animator animacao;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +23,15 @@ public class InimigoController : MonoBehaviour
 
         //Inicia as variaveis do tempo.
         milesimos = 60;
-        segundos = 1;
+        segundos = 2 ;
 
         //Inicia o player andando.
-        direcao = Random.Range(0, 5);      
+        direcao = Random.Range(0, 5);        
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {       
         //Recebe a posição 
         x = transform.position.x;
         y = transform.position.y;
@@ -77,7 +80,7 @@ public class InimigoController : MonoBehaviour
         MovimentacaoInimigo();
 
         //Condição para gerar um número aleatorio para se movimentar.
-        if (segundos == 0)
+        if (segundos <= 0)
         {
             direcao = Random.Range(0, 5);
             segundos = 3;         
@@ -96,43 +99,53 @@ public class InimigoController : MonoBehaviour
     //Função para se movimentar.x
     public void MovimentacaoInimigo()
     {
-        if (y >= 4)
+        Debug.Log(direcao);
+        if (y >= 4f)
         {
             transform.Translate(Vector2.down * velocidade * Time.deltaTime);
+            animacao.SetInteger("Andar", 0);
         }
         else if (y <= -1.9f)
         {
             transform.Translate(Vector2.up * velocidade * Time.deltaTime);
+            animacao.SetInteger("Andar", 2);
         }
-        else if (x <= -6)
+        else if (x <= -6f)
         {
             transform.Translate(Vector2.right * velocidade * Time.deltaTime);
+            animacao.SetInteger("Andar", 1);
         }
-        else if (x >= 6)
+        else if (x >= 6f)
         {
             transform.Translate(Vector2.left * velocidade * Time.deltaTime);
+            animacao.SetInteger("Andar", 3);
         }
 
         switch (direcao)
         {
             case 0:
                 transform.Translate(Vector2.down * velocidade * Time.deltaTime);
+                animacao.SetInteger("Andar", 0);
                 break;
 
             case 1:
-                transform.Translate(Vector2.right * velocidade * Time.deltaTime);                          
+                transform.Translate(Vector2.right * velocidade * Time.deltaTime);
+                animacao.SetInteger("Andar", 1);
                 break;
 
             case 2:
-                transform.Translate(Vector2.left * velocidade * Time.deltaTime);          
+                transform.Translate(Vector2.left * velocidade * Time.deltaTime);
+                animacao.SetInteger("Andar", 3);
                 break;              
 
             case 3:
                 transform.Translate(Vector2.up * velocidade * Time.deltaTime);
+                animacao.SetInteger("Andar", 2);
                 break;
 
             case 4:
-               //Para
+                animacao.SetBool("Parado", true);
+
                 break;
         }
     }
@@ -142,7 +155,7 @@ public class InimigoController : MonoBehaviour
     {
         milesimos = milesimos - 1;
 
-        if (milesimos == 0)
+        if (milesimos <= 0)
         {
             segundos = segundos - 1;
             milesimos = 60;
