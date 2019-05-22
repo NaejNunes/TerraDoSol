@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public static int vida, maxVida, mana, maxMana,
                       fome, sede, 
                       milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede,
-                      pontos, forcaOrigem, forca, inteligenciaOrigem, inteligencia,  agilidadeOrigem, agilidade, constituicaoOrigem, constituicao, 
+                      pontos, forca, inteligencia, agilidade, constituicao, 
                       experiencia, maxExperiencia, experienciaAuxiliar,  nivel,
                       ataqueFisico, ataqueMagico, defesaFisica, defesaMagica, regenDeVida, regenDeMana ;
   
@@ -22,9 +22,8 @@ public class PlayerController : MonoBehaviour
                         criticoPorcentagem;
 
     //Variavel para lincar a tabela de atributos do player.
-    public GameObject tabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown, btnForca, 
-                      btnInteligencia, btnAgilidade, btnConstituicao,
-                      btnForcaTirar, btnInteligenciaTirar, btnAgilidadeTirar, btnConstituicaoTirar;
+    public GameObject tabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown,
+                      btnForca, btnInteligencia, btnAgilidade, btnConstituicao;                 
 
     //visualiza o texto
     public Text txtVida, txtMana,
@@ -57,17 +56,17 @@ public class PlayerController : MonoBehaviour
         tempoSede = 3;
 
         //Atributos inicial do Player
-        forcaOrigem = 1;
-        inteligenciaOrigem = 1;
-        agilidadeOrigem = 1;
-        constituicaoOrigem = 3;
+        forca = 1;
+        inteligencia = 1;
+        agilidade = 1;
+        constituicao = 3;
 
         //Da valor ao experiencia.
         maxExperiencia = 100;
         experiencia = 0;
         nivel = 1;
         experienciaAuxiliar = 0;
-        pontos = 5;
+        pontos = 0;
 
         //Inicia a variavel com o animator.
         animacao = GetComponent<Animator>();
@@ -156,37 +155,25 @@ public class PlayerController : MonoBehaviour
         {
             nivel = nivel + 1;
             experiencia = 0;
-            pontos += 5;
+            pontos += 1;
         }
 
         //ativa e desativa os botoes na tabela para distribuir pontos
-        if (pontos <= 0)
+        if (pontos == 0)
         {
             //Adiciona
             btnForca.SetActive(false);
             btnInteligencia.SetActive(false);
             btnAgilidade.SetActive(false);
             btnConstituicao.SetActive(false);
-
-            //Diminue
-            btnForcaTirar.SetActive(false);
-            btnInteligenciaTirar.SetActive(false);
-            btnAgilidadeTirar.SetActive(false);
-            btnConstituicaoTirar.SetActive(false);
-        }
-        else if (pontos >= 1)
+        }      
+         if (pontos == 1)
         {
             btnForca.SetActive(true);
             btnInteligencia.SetActive(true);
             btnAgilidade.SetActive(true);
             btnConstituicao.SetActive(true);
-
-            //Diminue
-            btnForcaTirar.SetActive(true);
-            btnInteligenciaTirar.SetActive(true);
-            btnAgilidadeTirar.SetActive(true);
-            btnConstituicaoTirar.SetActive(true);
-        }
+        }       
 
         //recebe o arquivo txt e da as seguintes informacoes a ela...
         txtVida.text = "" + vida + "/" + maxVida;
@@ -198,13 +185,13 @@ public class PlayerController : MonoBehaviour
         txtSede.text = "" + sede + "/" + "10";
 
         //Ligando os arquivos txt dos atributos;
-        txtForca.text = "" + forcaOrigem;
+        txtForca.text = "" + forca;
 
-        txtInteligencia.text = "" + inteligenciaOrigem;
+        txtInteligencia.text = "" + inteligencia;
 
-        txtAgilidade.text = "" + agilidadeOrigem;
+        txtAgilidade.text = "" + agilidade;
 
-        txtConstituicao.text = "" + constituicaoOrigem; 
+        txtConstituicao.text = "" + constituicao; 
 
         //Nivel e Experiencia sendo ligados ao texto.
         txtExperiencia.text = "" + experiencia + "/" + maxExperiencia;
