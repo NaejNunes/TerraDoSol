@@ -71,7 +71,7 @@ public class InimigoController : MonoBehaviour
             vidaObjeto[2].SetActive(false);
             GameController.qtdAtualInimigos = GameController.qtdAtualInimigos - 1;
             GameController.SpawnInimigos();
-            PlayerController.experiencia += 10;
+            PlayerController.experiencia += 60f;
 
             Destroy(this.gameObject);
         }
@@ -103,48 +103,48 @@ public class InimigoController : MonoBehaviour
         if (y >= 4f)
         {
             transform.Translate(Vector2.down * velocidade * Time.deltaTime);
-            animacao.SetInteger("Andar", 0);
+            //animacao.SetInteger("Andar", 0);
         }
         else if (y <= -1.9f)
         {
             transform.Translate(Vector2.up * velocidade * Time.deltaTime);
-            animacao.SetInteger("Andar", 2);
+            //animacao.SetInteger("Andar", 2);
         }
         else if (x <= -6f)
         {
             transform.Translate(Vector2.right * velocidade * Time.deltaTime);
-            animacao.SetInteger("Andar", 1);
+            //animacao.SetInteger("Andar", 1);
         }
         else if (x >= 6f)
         {
             transform.Translate(Vector2.left * velocidade * Time.deltaTime);
-            animacao.SetInteger("Andar", 3);
+            //animacao.SetInteger("Andar", 3);
         }
 
         switch (direcao)
         {
             case 0:
                 transform.Translate(Vector2.down * velocidade * Time.deltaTime);
-                animacao.SetInteger("Andar", 0);
+                //animacao.SetInteger("Andar", 0);
                 break;
 
             case 1:
                 transform.Translate(Vector2.right * velocidade * Time.deltaTime);
-                animacao.SetInteger("Andar", 1);
+                //animacao.SetInteger("Andar", 1);
                 break;
 
             case 2:
                 transform.Translate(Vector2.left * velocidade * Time.deltaTime);
-                animacao.SetInteger("Andar", 3);
+                //animacao.SetInteger("Andar", 3);
                 break;              
 
             case 3:
                 transform.Translate(Vector2.up * velocidade * Time.deltaTime);
-                animacao.SetInteger("Andar", 2);
+                //animacao.SetInteger("Andar", 2);
                 break;
 
             case 4:
-                animacao.SetBool("Parado", true);
+                //animacao.SetBool("Parado", true);
 
                 break;
         }

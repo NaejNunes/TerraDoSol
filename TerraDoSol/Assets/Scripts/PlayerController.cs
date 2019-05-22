@@ -14,10 +14,10 @@ public class PlayerController : MonoBehaviour
                       fomeMax, fome, sede, sedeMax, 
                       milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede,
                       pontos, forca, inteligencia, agilidade, constituicao, 
-                      experiencia, maxExperiencia, experienciaAuxiliar,  nivel,
+                      experienciaAuxiliar,  nivel,
                       ataqueFisico, ataqueMagico, defesaFisica, defesaMagica, regenDeVida, regenDeMana ;
 
-    float porcentagemCritivo;
+    public static float porcentagemCritivo, experiencia, maxExperiencia;
 
     //Variavel usada para receber as posicoes.
     public static float X, Y;
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         constituicao = 0;
 
         //Da valor ao experiencia.
-        maxExperiencia = 100;
+        maxExperiencia = 500f;
         experiencia = 0;
         nivel = 1;
         experienciaAuxiliar = 0;
@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
             nivel = nivel + 1;
             experiencia = 0;
             pontos += 1;
+            maxExperiencia = maxExperiencia * 1.5f;
         }
 
         //ativa e desativa os botoes na tabela para distribuir pontos
