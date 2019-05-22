@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     //Variavel que da a velocidade em que o player ira andar.
     public float velocidade;
 
+    int contadorAtqFisico, contadorAtqMagico, contadorCritico, contadorVida, contadorMana, contadorDefFisica, contadorDefMagica, contadorRegenVida, contadorRegenMana, contadorFome, contadorSede;
+
     //Vairiaveis para definir os atributos basicos do player.
     public static int vida, maxVida, mana, maxMana,
-                      fome, sede, 
+                      fomeMax, fome, sede, sedeMax, 
                       milesimos, segundos, tempoVida, tempoMana, tempoFome, tempoSede,
                       pontos, forca, inteligencia, agilidade, constituicao, 
                       experiencia, maxExperiencia, experienciaAuxiliar,  nivel,
@@ -47,6 +49,7 @@ public class PlayerController : MonoBehaviour
         mana = 5;
         maxMana = 5;
         fome = 10;
+        fomeMax = 10;
         sede = 10;
 
         //Tempo
@@ -55,11 +58,25 @@ public class PlayerController : MonoBehaviour
         tempoFome = 6;
         tempoSede = 3;
 
+        //Contador de atributos 
+        contadorAtqFisico = 10;
+        contadorAtqMagico = 10;
+        contadorCritico = 10;
+        contadorVida = 5;
+        contadorMana = 5;
+        contadorDefFisica = 10;
+        contadorDefMagica = 10;
+        contadorRegenVida = 5;
+        contadorRegenMana = 5;
+        contadorFome = 5;
+        contadorSede = 5;
+
+
         //Atributos inicial do Player
         forca = 1;
         inteligencia = 1;
         agilidade = 1;
-        constituicao = 3;
+        constituicao = 1;
 
         //Da valor ao experiencia.
         maxExperiencia = 100;
@@ -180,9 +197,9 @@ public class PlayerController : MonoBehaviour
 
         txtMana.text = "" + mana + "/" + maxMana;
 
-        txtFome.text = "" + fome + "/" + "10";
+        txtFome.text = "" + fome + "/" + fomeMax;
 
-        txtSede.text = "" + sede + "/" + "10";
+        txtSede.text = "" + sede + "/" + fomeMax;
 
         //Ligando os arquivos txt dos atributos;
         txtForca.text = "" + forca;
@@ -305,8 +322,43 @@ public class PlayerController : MonoBehaviour
         {
             vida = vida - 1;
         }
-    }   
+    }
 
+    //Calcula ps atributos 
+    public void CalcularAtributos()
+    {
+        if (contadorAtqFisico <= 0)
+        {
+            ataqueFisico += 1;
+            defesaFisica += 1;
+            fomeMax += 1;
+        }
+
+        if (contadorAtqMagico <= 0)
+        {
+            ataqueMagico += 1;
+            defesaMagica += 1;
+            sedeMax += 1;
+            regenDeMana += 1;
+        }
+
+        if (contadorVida <= 0)
+        {
+            vida += 1;
+            defesaMagica += 1;
+            defesaFisica += 1;
+            regenDeVida += 1;
+        }
+       
+        ataqueMagico = inteligencia;
+        regenDeMana = 0;
+        regenDeVida = 0;
+        criticoPorcentagem = 0;
+        defesaFisica = 0;
+        defesaMagica = 0;
+        mana = 0;
+        vida = 0;
+    }
     //Metodo que simula um cronometro.
     public static void Tempo()
     {
