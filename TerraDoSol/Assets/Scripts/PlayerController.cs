@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     //Variavel que da a velocidade em que o player ira andar.
     public float velocidade;
 
-    int contadorAtqFisico, contadorAtqMagico, contadorCritico, contadorVida, contadorMana, contadorDefFisica, contadorDefMagica, contadorRegenVida, contadorRegenMana, contadorFome, contadorSede;
-
     //Vairiaveis para definir os atributos basicos do player.
     public static int vida, maxVida, mana, maxMana,
                       fomeMax, fome, sede, sedeMax, 
@@ -18,11 +16,12 @@ public class PlayerController : MonoBehaviour
                       pontos, forca, inteligencia, agilidade, constituicao, 
                       experiencia, maxExperiencia, experienciaAuxiliar,  nivel,
                       ataqueFisico, ataqueMagico, defesaFisica, defesaMagica, regenDeVida, regenDeMana ;
-  
-    //Variavel usada para receber as posicoes.
-    public static float X, Y,
-                        criticoPorcentagem;
 
+    float porcentagemCritivo;
+
+    //Variavel usada para receber as posicoes.
+    public static float X, Y;
+                        
     //Variavel para lincar a tabela de atributos do player.
     public GameObject tabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown,
                       btnForca, btnInteligencia, btnAgilidade, btnConstituicao;                 
@@ -54,29 +53,15 @@ public class PlayerController : MonoBehaviour
 
         //Tempo
         tempoVida = 50;
-        tempoMana = 1;
+        tempoMana = 30;
         tempoFome = 6;
         tempoSede = 3;
 
-        //Contador de atributos 
-        contadorAtqFisico = 10;
-        contadorAtqMagico = 10;
-        contadorCritico = 10;
-        contadorVida = 5;
-        contadorMana = 5;
-        contadorDefFisica = 10;
-        contadorDefMagica = 10;
-        contadorRegenVida = 5;
-        contadorRegenMana = 5;
-        contadorFome = 5;
-        contadorSede = 5;
-
-
         //Atributos inicial do Player
-        forca = 1;
-        inteligencia = 1;
-        agilidade = 1;
-        constituicao = 1;
+        forca = 0;
+        inteligencia = 0;
+        agilidade = 0;
+        constituicao = 0;
 
         //Da valor ao experiencia.
         maxExperiencia = 100;
@@ -92,8 +77,8 @@ public class PlayerController : MonoBehaviour
         ataqueFisico = 1;
         ataqueMagico = 0;
         defesaFisica = 1;
-        defesaMagica = 0;
-        criticoPorcentagem = 0;
+        defesaMagica = 1;
+        porcentagemCritivo = 0.01f;
         regenDeVida = 1;
         regenDeMana = 1;
 
@@ -241,7 +226,6 @@ public class PlayerController : MonoBehaviour
             animacao.SetInteger("Direcao", 2);
             animacao.SetBool("AndarBaixo", true);
         }
-
         else if (x == 1)
         {
             direcaoDireita = true;
@@ -265,6 +249,7 @@ public class PlayerController : MonoBehaviour
 
             animacao.SetInteger("Direcao", 0);
             animacao.SetBool("AndarBaixo", true);
+
         }
 
         else if (x == -1)
@@ -323,42 +308,7 @@ public class PlayerController : MonoBehaviour
             vida = vida - 1;
         }
     }
-
-    //Calcula ps atributos 
-    public void CalcularAtributos()
-    {
-        if (contadorAtqFisico <= 0)
-        {
-            ataqueFisico += 1;
-            defesaFisica += 1;
-            fomeMax += 1;
-        }
-
-        if (contadorAtqMagico <= 0)
-        {
-            ataqueMagico += 1;
-            defesaMagica += 1;
-            sedeMax += 1;
-            regenDeMana += 1;
-        }
-
-        if (contadorVida <= 0)
-        {
-            vida += 1;
-            defesaMagica += 1;
-            defesaFisica += 1;
-            regenDeVida += 1;
-        }
-       
-        ataqueMagico = inteligencia;
-        regenDeMana = 0;
-        regenDeVida = 0;
-        criticoPorcentagem = 0;
-        defesaFisica = 0;
-        defesaMagica = 0;
-        mana = 0;
-        vida = 0;
-    }
+    
     //Metodo que simula um cronometro.
     public static void Tempo()
     {
