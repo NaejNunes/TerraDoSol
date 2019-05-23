@@ -77,7 +77,6 @@ GameObject:
   - component: {fileID: 7689776569367686301}
   - component: {fileID: 7689776569367686274}
   - component: {fileID: 7689776569367686302}
-  - component: {fileID: 1070987933}
   m_Layer: 0
   m_Name: UrsoDaFloresta
   m_TagString: Inimigo
@@ -211,25 +210,6 @@ MonoBehaviour:
   - {fileID: 7689776569564146959}
   - {fileID: 7689776569792556317}
   - {fileID: 7689776569815702966}
---- !u!95 &1070987933
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7689776569367686275}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b6a7f059b5987f6479b973f8eca2ab8d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7689776569564146959
 GameObject:
   m_ObjectHideFlags: 0

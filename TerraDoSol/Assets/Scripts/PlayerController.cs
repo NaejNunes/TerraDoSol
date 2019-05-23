@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public static float X, Y;
                         
     //Variavel para lincar a tabela de atributos do player.
-    public GameObject tabelaDoHeroi, ataqueMagicoRight, ataqueMagicoLeft, ataqueMagicoUp, ataqueMagicoDown,
+    public GameObject tabelaDoHeroi, ataqueBasicoCima, ataqueBasicoBaixo, ataqueBasicoEsquerda, ataqueBasicoDireita,
                       btnForca, btnInteligencia, btnAgilidade, btnConstituicao;                 
 
     //visualiza o texto
@@ -95,11 +95,10 @@ public class PlayerController : MonoBehaviour
         MovimentacaoPlayer();
 
         //Condicao que verifica se tem mana suficiente;
-        if (mana > 1)
-        {
+      
             //Chama a funcao que instancia a Habilidade.
-            FechaDeGelo();
-        }
+            AtaqueBasico();
+        
 
         //Condicao para nao aumentar a "vida" mais que o maximo.
         if (vida >= maxVida)
@@ -230,8 +229,8 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(0, velocidade, 0);
 
             //Recebe as animações
-            animacao.SetInteger("Direcao", 2);
-            animacao.SetBool("AndarBaixo", true);
+            animacao.SetInteger("Andar", 2);
+            animacao.SetBool("Parado", false);
         }
         else if (x == 1)
         {
@@ -242,8 +241,8 @@ public class PlayerController : MonoBehaviour
 
             transform.position += new Vector3(velocidade, 0, 0);
 
-            animacao.SetInteger("Direcao", 1);
-            animacao.SetBool("AndarBaixo", true);
+            animacao.SetInteger("Andar", 1);
+            animacao.SetBool("Parado", false);
         }
         else if (y == -1)
         {
@@ -254,8 +253,8 @@ public class PlayerController : MonoBehaviour
 
             transform.position += new Vector3(0, -velocidade, 0);
 
-            animacao.SetInteger("Direcao", 0);
-            animacao.SetBool("AndarBaixo", true);
+            animacao.SetInteger("Andar", 0);
+            animacao.SetBool("Parado", false);
 
         }
 
@@ -268,41 +267,46 @@ public class PlayerController : MonoBehaviour
 
             transform.position += new Vector3(-velocidade, 0, 0);
 
-            animacao.SetInteger("Direcao", 3);
-            animacao.SetBool("AndarBaixo", true);
+            animacao.SetInteger("Andar", 3);
+            animacao.SetBool("Parado", false);
         }
         else
         {
-            animacao.SetBool("AndarBaixo", false);
+            animacao.SetBool("Parado", true);
         }
     }
     //Instacia uma flecha de gelo.
 
-    public void FechaDeGelo()
+    public void AtaqueBasico()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            mana = mana - 2;
-
+        {         
             if (direcaoDireita == true)
             {
-                Instantiate(this.ataqueMagicoRight, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
+               // animacao.SetBool("Atacar", true);
+                Instantiate(this.ataqueBasicoDireita, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
             }
 
             if (direcaoEsquerda == true)
             {
-                Instantiate(this.ataqueMagicoLeft, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
+                Instantiate(this.ataqueBasicoEsquerda, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
+               // animacao.SetBool("Atacar", true);
             }
 
             if (direcaoCima == true)
             {
-                Instantiate(this.ataqueMagicoUp, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
+                Instantiate(this.ataqueBasicoCima, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
+               // animacao.SetBool("Atacar", true);
             }
 
             if (direcaoBaixo == true)
             {
-                Instantiate(this.ataqueMagicoDown, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
+                Instantiate(this.ataqueBasicoBaixo, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
+               // animacao.SetBool("Atacar", true);
             }
+        }
+        else {
+           // animacao.SetBool("Atacar", false);
         }
     }
 

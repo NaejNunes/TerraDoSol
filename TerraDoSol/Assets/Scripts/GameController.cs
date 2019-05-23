@@ -10,13 +10,16 @@ public class GameController : MonoBehaviour
 
     private static float x, y;
 
-    public GameObject InimgiosObjeto;
+    public GameObject InimgiosObjeto, tabelaDoHeroi;
 
-   
+    public bool CheckTabelaHeroi;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        CheckTabelaHeroi = false;
+
         //Iniciando as variaveis para conta de tempo.
         milesimos = 60;
         segundos = 60;       
@@ -157,5 +160,27 @@ public class GameController : MonoBehaviour
         PlayerController.constituicao -= 1;
 
         PlayerController.pontos += 1;
+    }
+
+    public void TabelaDoHeroi()
+    {
+        if (CheckTabelaHeroi == true)
+        {
+            CheckTabelaHeroi = false;
+        }
+        else
+        {
+            CheckTabelaHeroi = true;
+        }
+
+        if (CheckTabelaHeroi == true)
+        {
+            tabelaDoHeroi.SetActive(true);
+        }
+
+        if (CheckTabelaHeroi == false)
+        {
+            tabelaDoHeroi.SetActive(false);
+        }
     }
 }
