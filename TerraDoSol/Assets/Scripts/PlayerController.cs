@@ -231,6 +231,7 @@ public class PlayerController : MonoBehaviour
             //Recebe as animações
             animacao.SetInteger("Andar", 2);
             animacao.SetBool("Parado", false);
+            animacao.SetBool("Atacar", false);
         }
         else if (x == 1)
         {
@@ -243,6 +244,7 @@ public class PlayerController : MonoBehaviour
 
             animacao.SetInteger("Andar", 1);
             animacao.SetBool("Parado", false);
+             animacao.SetBool("Atacar", false);
         }
         else if (y == -1)
         {
@@ -255,6 +257,7 @@ public class PlayerController : MonoBehaviour
 
             animacao.SetInteger("Andar", 0);
             animacao.SetBool("Parado", false);
+             animacao.SetBool("Atacar", false);
 
         }
 
@@ -269,45 +272,45 @@ public class PlayerController : MonoBehaviour
 
             animacao.SetInteger("Andar", 3);
             animacao.SetBool("Parado", false);
+             animacao.SetBool("Atacar", false);
         }
         else
         {
             animacao.SetBool("Parado", true);
+             animacao.SetBool("Atacar", false);
         }
     }
-    //Instacia uma flecha de gelo.
 
+    //Instacia uma flecha.
     public void AtaqueBasico()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {         
             if (direcaoDireita == true)
             {
-               // animacao.SetBool("Atacar", true);
+                animacao.SetBool("Atacar", true);
                 Instantiate(this.ataqueBasicoDireita, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
             }
 
             if (direcaoEsquerda == true)
             {
+                 animacao.SetBool("Atacar", true);
                 Instantiate(this.ataqueBasicoEsquerda, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
-               // animacao.SetBool("Atacar", true);
             }
 
             if (direcaoCima == true)
             {
+                animacao.SetBool("Atacar", true);
                 Instantiate(this.ataqueBasicoCima, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
-               // animacao.SetBool("Atacar", true);
             }
 
             if (direcaoBaixo == true)
             {
+                 animacao.SetBool("Atacar", true);
                 Instantiate(this.ataqueBasicoBaixo, new Vector2(PlayerController.X, PlayerController.Y), Quaternion.identity);
-               // animacao.SetBool("Atacar", true);
             }
         }
-        else {
-           // animacao.SetBool("Atacar", false);
-        }
+        
     }
 
     //Detecta a colisao com algo solido em cena
