@@ -10,15 +10,17 @@ public class GameController : MonoBehaviour
 
     private static float x, y;
 
-    public GameObject InimgiosObjeto, tabelaDoHeroi;
+    public GameObject InimgiosObjeto, painelDoHeroi, painelInventario, painelHabilidade;
 
-    public bool CheckTabelaHeroi;
+    bool CheckHeroi, checkInventario, checkHabilidade;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        CheckTabelaHeroi = false;
+        CheckHeroi = false;
+        checkInventario = false;
+        checkHabilidade = false;
 
         //Iniciando as variaveis para conta de tempo.
         milesimos = 60;
@@ -162,25 +164,69 @@ public class GameController : MonoBehaviour
         PlayerController.pontos += 1;
     }
 
-    public void TabelaDoHeroi()
+    public void PainelDoHeroi()
     {
-        if (CheckTabelaHeroi == true)
+        if (CheckHeroi == true)
         {
-            CheckTabelaHeroi = false;
+            CheckHeroi = false;
         }
         else
         {
-            CheckTabelaHeroi = true;
+            CheckHeroi = true;
         }
 
-        if (CheckTabelaHeroi == true)
+        if (CheckHeroi == true)
         {
-            tabelaDoHeroi.SetActive(true);
+            painelDoHeroi.SetActive(true);
         }
 
-        if (CheckTabelaHeroi == false)
+        if (CheckHeroi == false)
         {
-            tabelaDoHeroi.SetActive(false);
+            painelDoHeroi.SetActive(false);
+        }
+    }
+
+    public void PainelInventario()
+    {
+        if (checkInventario == true)
+        {
+            checkInventario = false;
+        }
+        else
+        {
+            checkInventario = true;
+        }
+
+        if (checkInventario == true)
+        {
+            painelInventario.SetActive(true);
+        }
+
+        if (checkInventario == false)
+        {
+            painelInventario.SetActive(false);
+        }
+    }
+
+    public void PainelDeHabilidade()
+    {
+        if (checkHabilidade == true)
+        {
+            checkHabilidade = false;
+        }
+        else
+        {
+            checkHabilidade = true;
+        }
+
+        if (checkHabilidade == true)
+        {
+            painelHabilidade.SetActive(true);
+        }
+
+        if (checkHabilidade == false)
+        {
+            painelHabilidade.SetActive(false);
         }
     }
 }
